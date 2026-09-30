@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Platform identifier contract
+
+Every BreezeBuild-generated UUID, including `X-Request-ID` correlation IDs, must be UUIDv7. Use the maintained `uuid` package's `v7()` generator and its `validate()`/`version()` functions for inbound UUIDs; do not hand-write UUID generation or use `crypto.randomUUID()`, which creates UUIDv4 values. Accept an inbound correlation ID only when it is a valid UUIDv7; otherwise replace it with a new UUIDv7. External identifiers, including Clerk user IDs, are not subject to this rule.
