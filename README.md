@@ -75,11 +75,25 @@ them:
 ```
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
 CLERK_SECRET_KEY=sk_test_...
+CORE_API_BASE_URL=http://localhost:8080
 ```
 
 The fastest way to get those is `npx clerk@latest init`, which provisions a
 development instance and writes the file for you. `.env.local` is gitignored —
 keep it that way.
+
+After Clerk sign-in or sign-up, Clerk redirects to the account setup page. That
+page shows a multi-step loader while a server function provisions the user in
+Breeze Core, then sends them home. If setup fails, it offers a retry link and
+request ID. `CORE_API_BASE_URL` points to Core today and can point to the API
+gateway when it is available. The Clerk token and Core URL stay on the server;
+`X-Request-ID` is propagated through the request.
+
+To enable New Relic monitoring for the Next.js server, add
+`NEW_RELIC_LICENSE_KEY` to `.env.local` or to your deployment's server-side
+environment. The agent is inactive when the key is absent. The Node.js runtime
+uses New Relic's Next.js hybrid instrumentation; the Edge runtime and browser
+are not instrumented by this setup. The agent is named `BreezeBuild Web`.
 
 ## Status
 
