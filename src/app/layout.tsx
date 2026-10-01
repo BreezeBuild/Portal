@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           signInUrl="/sign-in"
           signUpUrl="/sign-up"
           signInForceRedirectUrl="/auth/complete"
-          signUpForceRedirectUrl="/auth/complete"
+          signUpForceRedirectUrl="/auth/complete?flow=signup"
         >
           {children}
         </ClerkProvider>
