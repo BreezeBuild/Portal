@@ -25,6 +25,11 @@
   );
 }
 
+.plain {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+}
+
 /*
  * Grid lives on its own layer so it can be masked independently of the base
  * gradient: fully hidden behind the top bar, then eased in. The mask stops

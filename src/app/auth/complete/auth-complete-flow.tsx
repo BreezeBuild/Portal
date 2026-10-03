@@ -56,7 +56,7 @@ export function AuthCompleteFlow({ isSignup }: { isSignup: boolean }) {
 
     const elapsed = performance.now() - (startedAt.current ?? performance.now());
     const remaining = isSignup ? Math.max(0, SIGNUP_MINIMUM_MS - elapsed) : 0;
-    const redirectTimer = window.setTimeout(() => router.replace("/"), remaining);
+    const redirectTimer = window.setTimeout(() => router.replace("/dashboard"), remaining);
     return () => window.clearTimeout(redirectTimer);
   }, [finalStageSettled, isSignup, provisioned, router]);
 
