@@ -87,9 +87,11 @@ multi-step loader follows the real provisioning request to Breeze Core through
 the same-origin API route. Signup shows the loader for at least two seconds; any
 remaining time is spent on the final stage after provisioning succeeds. A slower
 request keeps the loader up until it finishes. If setup fails, the page offers
-a retry link and request ID. `CORE_API_BASE_URL` points to Core today and can
-point to the API gateway when it is available. The Clerk token and Core URL stay
-on the server; `X-Request-ID` is propagated through the request.
+a retry link and request ID. Next.js Route Handlers are the browser-facing API
+layer; `CORE_API_BASE_URL` points to Core. The Clerk token and Core URL stay on
+the server; `X-Request-ID` is propagated through the request. Protected browser
+API routes check `GET /api/users/provisioned` in Core before forwarding work.
+The provisioning route is exempt because it creates the local user.
 
 To enable New Relic monitoring for the Next.js server, add
 `NEW_RELIC_LICENSE_KEY` to `.env.local` or to your deployment's server-side

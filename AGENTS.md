@@ -11,3 +11,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Platform identifier contract
 
 Every BreezeBuild-generated UUID, including `X-Request-ID` correlation IDs, must be UUIDv7. Use the maintained `uuid` package's `v7()` generator and its `validate()`/`version()` functions for inbound UUIDs; do not hand-write UUID generation or use `crypto.randomUUID()`, which creates UUIDv4 values. Accept an inbound correlation ID only when it is a valid UUIDv7; otherwise replace it with a new UUIDv7. External identifiers, including Clerk user IDs, are not subject to this rule.
+
+## Browser API boundary
+
+Next.js Route Handlers are BreezeBuild's browser-facing API layer; do not add a standalone Gateway service. Core owns local user provisioning and project/user metadata. Workspace owns project source code. Temporal will coordinate long-running cross-service workflows when the first such flow is implemented.
+
+Use `withProvisionedUser` from `src/lib/protected-api.ts` for protected browser API routes. It verifies the Clerk session and checks Core for a provisioned local user on each request. The user-provisioning route is exempt so a new Clerk user can be created in Core. Forward the verified Clerk token and UUIDv7 request ID to downstream services, which must still enforce their own authentication and resource authorization.
