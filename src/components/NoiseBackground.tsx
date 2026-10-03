@@ -5,6 +5,7 @@ import {
   useAnimationFrame,
   useMotionTemplate,
   useMotionValue,
+  useReducedMotion,
   useSpring,
   useTransform,
   type MotionValue,
@@ -61,6 +62,8 @@ export function NoiseBackground({
   animating = true,
 }: NoiseBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const dimensions = useRef({ width: 0, height: 0 });
+  const reducedMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -80,9 +83,18 @@ export function NoiseBackground({
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    const rect = el.getBoundingClientRect();
-    x.set(rect.width / 2);
-    y.set(rect.height / 2);
+    const updateDimensions = () => {
+      const rect = el.getBoundingClientRect();
+      dimensions.current = { width: rect.width, height: rect.height };
+      if (x.get() === 0 && y.get() === 0) {
+        x.set(rect.width / 2);
+        y.set(rect.height / 2);
+      }
+    };
+    updateDimensions();
+    const observer = new ResizeObserver(updateDimensions);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [x, y]);
 
   useEffect(() => {
@@ -95,11 +107,10 @@ export function NoiseBackground({
   }, [speed]);
 
   useAnimationFrame((time) => {
-    if (!animating || !containerRef.current) return;
+    if (!animating || reducedMotion || !containerRef.current) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const maxX = rect.width;
-    const maxY = rect.height;
+    const { width: maxX, height: maxY } = dimensions.current;
+    if (maxX === 0 || maxY === 0) return;
 
     if (time - lastTurn.current > 1500 + Math.random() * 1500) {
       velocity.current = randomVelocity.current();
@@ -163,7 +174,7 @@ export function NoiseBackground({
         aria-hidden="true"
         style={{
           background: `linear-gradient(to right, ${gradientColors.join(", ")})`,
-          x: animating ? stripX : 0,
+          x: animating && !reducedMotion ? stripX : 0,
         }}
       />
 

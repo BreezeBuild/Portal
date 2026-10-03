@@ -25,7 +25,7 @@ const PRINCIPLES = [
 
 export function WorkflowSection() {
   return (
-    <section className={styles.root} aria-labelledby="workflow-heading">
+    <section id="how-it-works" className={styles.root} aria-labelledby="workflow-heading">
       <div className={backdrop.shell}>
         <div className={styles.head}>
           <span className={styles.eyebrow}>

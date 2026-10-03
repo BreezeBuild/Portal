@@ -40,23 +40,25 @@ export default function Home() {
           </div>
         </header>
 
-        <HeroDitheringRoot>
-          <HeroDitheringContainer>
-            <HeroDitheringContent>
-              <HeroDitheringHeading />
-              <HeroDitheringDescription />
-              <HeroDitheringActions />
-              <HeroDitheringMobileVisual />
-            </HeroDitheringContent>
-            <HeroDitheringVisual />
-          </HeroDitheringContainer>
-        </HeroDitheringRoot>
+        <main>
+          <HeroDitheringRoot>
+            <HeroDitheringContainer>
+              <HeroDitheringContent>
+                <HeroDitheringHeading />
+                <HeroDitheringDescription />
+                <HeroDitheringActions />
+                <HeroDitheringMobileVisual />
+              </HeroDitheringContent>
+              <HeroDitheringVisual />
+            </HeroDitheringContainer>
+          </HeroDitheringRoot>
 
-        <StackSection />
+          <StackSection />
 
-        <WorkflowSection />
+          <WorkflowSection />
 
-        <PricingSection />
+          <PricingSection />
+        </main>
 
         <FooterSection />
       </div>

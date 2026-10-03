@@ -53,12 +53,12 @@ export function HeroDitheringDescription() {
   return (
     <div className={styles.description}>
       <p className={styles.lead}>
-        Build production-ready Spring Boot applications with AI, and deploy them
-        in minutes.
+        BreezeBuild is being built to turn backend ideas into reviewable Spring
+        Boot applications with AI.
       </p>
       <p className={styles.detail}>
-        Test safely in your browser with automated testing, live API previews,
-        Swagger, and built-in synthetic data.
+        The workflow below shows the planned experience: automated tests, live
+        API previews, Swagger, and synthetic data in your browser.
       </p>
     </div>
   );
@@ -84,13 +84,12 @@ export function HeroDitheringActions() {
 
       {/* NoiseButton and CosmicButton take identical props - swap the name to switch treatment. */}
       <NoiseButton
-        label="Start Building"
+        label="Create an account"
         href="/sign-up"
         variant="primary"
         size="md"
         trailing="→"
       />
-      {/* TODO: no destination until a "how it works" section exists. */}
       <CosmicButton
         label="See How It Works"
         href="#how-it-works"

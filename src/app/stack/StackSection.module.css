@@ -85,7 +85,7 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, 0.38);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 .detailBody {
@@ -185,7 +185,7 @@
   margin-left: 0.35rem;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
-  color: rgba(250, 250, 250, 0.42);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 .steps {
@@ -395,10 +395,10 @@
 }
 
 .role {
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, 0.3);
+  color: rgba(250, 250, 250, 0.58);
   transition: color 300ms ease;
 }
 

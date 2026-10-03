@@ -225,9 +225,8 @@ function UsageLedger() {
           </div>
 
           <p className={styles.ledgerNote}>
-            Vendor, model, and service names are shown whenever they are
-            available. Storage and networking appear as their own lines when
-            they apply.
+            This sample shows how vendor, model, and service costs could be
+            broken down. The amounts are illustrative.
           </p>
         </div>
       </div>
@@ -241,12 +240,12 @@ export function PricingSection() {
       <div className={backdrop.shell}>
         <div className={styles.head}>
           <h2 id="pricing-heading" className={styles.heading}>
-            Transparent pricing. No surprises.
+            Proposed pricing, made clear.
           </h2>
           <p className={styles.intro}>
-            BreezeBuild keeps the platform simple: one predictable subscription,
-            with AI and infrastructure usage metered separately through{" "}
-            <span className={styles.accent}>Breeze Credits</span>.
+            This is an illustrative pricing model, not a final offer: a platform
+            subscription with AI and infrastructure usage tracked separately as{" "}
+            <span className={styles.accent}>Breeze Credits</span>. Final terms may change.
           </p>
         </div>
 
@@ -256,7 +255,7 @@ export function PricingSection() {
             animated
             header={
               <div>
-                <span className={styles.label}>BreezeBuild subscription</span>
+                <span className={styles.label}>Proposed subscription</span>
                 <div className={styles.priceRow}>
                   <span className={`${styles.price} ${styles.priceAccent}`}>
                     $20
@@ -265,8 +264,8 @@ export function PricingSection() {
                 </div>
               </div>
             }
-            title="Your subscription stays $20/month."
-            description="The fixed platform fee. It does not move with how much you build."
+            title="Illustrative platform fee: $20/month."
+            description="The proposed model separates the platform fee from variable usage."
           />
 
           <BentoGridItem
@@ -280,22 +279,22 @@ export function PricingSection() {
                 </div>
               </div>
             }
-            title="Metered, not bundled."
-            description="Credits map to real variable usage, at cost parity with the dollar. There is no conversion rate to decode."
+            title="Usage would be metered separately."
+            description="In this proposed model, one Breeze Credit represents $1 of variable usage."
           />
 
           <BentoGridItem
             className={`${bentoStyles.spanTwo} ${bentoStyles.rowTwo}`}
             header={<UsageLedger />}
             icon={<ReceiptIcon />}
-            title="Your usage is traceable."
-            description="Every charge maps to the vendor, model, and service that produced it. BreezeBuild does not hide AI or infrastructure costs behind an opaque token system."
+            title="A traceable usage concept."
+            description="The planned ledger would show the vendor, model, and service behind each charge."
           />
 
           <BentoGridItem
             icon={<SparkIcon />}
-            title="AI that optimizes for efficiency"
-            description="BreezeBuild's AI agents are designed to minimize unnecessary model calls, compute, and infrastructure usage while helping developers build and iterate quickly."
+            title="AI designed for efficiency"
+            description="The planned agents aim to limit unnecessary model calls, compute, and infrastructure usage while helping developers iterate."
           />
 
           <BentoGridItem
@@ -340,7 +339,7 @@ export function PricingSection() {
                 </ul>
               </div>
             }
-            title="Know what you used. Know what it cost."
+            title="See what you use and what it costs."
           />
 
           <BentoGridItem
@@ -354,10 +353,9 @@ export function PricingSection() {
                   </span>
                 </span>
                 <p className={styles.philosophyBody}>
-                  $20 for BreezeBuild itself. Breeze Credits for what you
-                  actually consume. No opaque AI token bundles, no unexplained
-                  infrastructure charges, and agents that work to keep the
-                  variable half small.
+                  This example separates a proposed $20 platform fee from
+                  variable AI and infrastructure usage. Final pricing and
+                  billing details have not been set.
                 </p>
               </div>
             }

@@ -78,11 +78,11 @@
 }
 
 .label {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, 0.34);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 .covers {
@@ -148,10 +148,10 @@
   border: 1px solid rgba(250, 250, 250, 0.12);
   border-radius: 999px;
   padding: 0.25em 0.6em;
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, 0.4);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 .toggle {
@@ -214,11 +214,11 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, 0.42);
+  color: rgba(250, 250, 250, 0.58);
   margin-bottom: 0.4rem;
 }
 
@@ -254,7 +254,7 @@
   display: block;
   font-size: 0.72rem;
   line-height: 1.4;
-  color: rgba(250, 250, 250, 0.38);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 /* Dotted leader ties name to amount across the gap. */
@@ -297,7 +297,7 @@
   margin: 0;
   font-size: 0.76rem;
   line-height: 1.55;
-  color: rgba(250, 250, 250, 0.4);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 /* ============================================================
@@ -389,7 +389,7 @@
 
 .legendPct {
   font-variant-numeric: tabular-nums;
-  color: rgba(250, 250, 250, 0.42);
+  color: rgba(250, 250, 250, 0.58);
 }
 
 /* ============================================================

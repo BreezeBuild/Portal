@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { MotionValue, motion, useScroll, useTransform } from "motion/react";
+import React, { useRef, useSyncExternalStore } from "react";
+import { MotionValue, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 import {
   IconBrightnessDown,
@@ -43,6 +43,21 @@ import { IconCaretDownFilled } from "@tabler/icons-react";
  * clears it by ~76px and lets the screen settle into the space underneath.
  */
 const LID_TRAVEL = 620;
+const MOBILE_QUERY = "(max-width: 767px)";
+
+function subscribeMobile(onChange: () => void) {
+  const query = window.matchMedia(MOBILE_QUERY);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
+function isMobileViewport() {
+  return window.matchMedia(MOBILE_QUERY).matches;
+}
+
+function isServerViewport() {
+  return false;
+}
 
 export const MacbookScroll = ({
   src,
@@ -63,13 +78,8 @@ export const MacbookScroll = ({
     offset: ["start start", "end start"],
   });
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    if (window && window.innerWidth < 768) {
-      setIsMobile(true);
-    }
-  }, []);
+  const isMobile = useSyncExternalStore(subscribeMobile, isMobileViewport, isServerViewport);
+  const reducedMotion = useReducedMotion();
 
   const scaleX = useTransform(
     scrollYProgress,
@@ -99,7 +109,7 @@ export const MacbookScroll = ({
       className="flex min-h-[140vh] shrink-0 origin-top scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-24 lg:scale-105 xl:scale-115 2xl:scale-[1.3]"
     >
       <motion.h2
-        style={{
+        style={reducedMotion ? undefined : {
           translateY: textTransform,
           opacity: textOpacity,
         }}
@@ -119,6 +129,8 @@ export const MacbookScroll = ({
         scaleY={scaleY}
         rotate={rotate}
         translate={translate}
+        reducedMotion={Boolean(reducedMotion)}
+        isMobile={isMobile}
       />
       {/* Base area */}
       <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
@@ -155,6 +167,8 @@ export const Lid = ({
   translate,
   src,
   screen,
+  reducedMotion,
+  isMobile,
 }: {
   scaleX: MotionValue<number>;
   scaleY: MotionValue<number>;
@@ -162,6 +176,8 @@ export const Lid = ({
   translate: MotionValue<number>;
   src?: string;
   screen?: React.ReactNode;
+  reducedMotion: boolean;
+  isMobile: boolean;
 }) => {
   return (
     <div className="relative [perspective:800px]">
@@ -186,10 +202,10 @@ export const Lid = ({
       </div>
       <motion.div
         style={{
-          scaleX: scaleX,
-          scaleY: scaleY,
-          rotateX: rotate,
-          translateY: translate,
+          scaleX: reducedMotion ? (isMobile ? 1 : 1.5) : scaleX,
+          scaleY: reducedMotion ? (isMobile ? 1 : 1.5) : scaleY,
+          rotateX: reducedMotion ? 0 : rotate,
+          translateY: reducedMotion ? LID_TRAVEL : translate,
           transformStyle: "preserve-3d",
           transformOrigin: "top",
         }}
