@@ -36,12 +36,16 @@ and like something you'd actually ship.
 ## What's in this repo
 
 The BreezeBuild frontend — the web application users sign in to and work in, not
-a separate marketing site. Right now that's the landing surface plus
-authentication; the workspace itself (agent panel, diff review, test runs, live
-preview) is being built out here.
+a separate marketing site. It currently has the landing surface, authentication,
+account setup, and the protected browser API boundary. The browser IDE, agent
+panel, diff review, test runs, and live preview are still being built.
 
-The backend platform that generates and deploys applications lives elsewhere and
-isn't open source (yet, or maybe ever — undecided).
+The platform services live in separate repositories: [Core](https://github.com/cychatwani/BreezeBuildCore)
+owns users and project metadata; [Workspace](https://github.com/cychatwani/BreezeBuildWorkSpace)
+will own generated source-code workspaces; and [Agentic](https://github.com/cychatwani/BreezeBuildAgentic)
+is the Python/FastAPI AI service. Next.js Route Handlers are the browser-facing
+API layer, not a standalone gateway. Core now queues project initialization
+through Temporal, but the Workspace creation worker is not implemented yet.
 
 ## Tech stack
 
@@ -57,8 +61,8 @@ isn't open source (yet, or maybe ever — undecided).
 | Font | Geist |
 | Package manager | Yarn |
 
-The product BreezeBuild generates is a different stack entirely — Java 21,
-Spring Boot, PostgreSQL/RDS, Redis, Flyway, Resilience4j, Lombok, Gradle, AWS.
+The initial target for generated projects is Java 21, Spring Boot, PostgreSQL,
+Flyway, and Gradle. Later build and preview infrastructure is not in this repo.
 
 ## Running it
 
@@ -104,8 +108,14 @@ are not instrumented by this setup. The agent is named `BreezeBuild Web`.
 | | |
 |---|---|
 | Version | 0.0.1 |
-| Stage | Landing page only, actively changing |
+| Stage | Early web app with authentication and account setup; IDE in progress |
 | Stability | None. Assume anything can move. |
+
+## Collaboration
+
+Create a feature branch for each change and open a pull request against `main`.
+The `main` branch requires a PR. Changes are left for human review and merge on
+GitHub; do not push directly to `main`.
 
 ## Feedback
 
